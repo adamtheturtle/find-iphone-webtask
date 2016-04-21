@@ -149,65 +149,6 @@ var findmyphone = {
 		};
 		findmyphone.iRequest.post(options, callback);
 	},
-	getLocationOfDevice: function(device, callback) {
-
-		if (!device.location) {
-			return callback("No location in device");
-		}
-
-		var googleUrl = "http://maps.googleapis.com/maps/api/geocode/json" +
-			"?latlng=%d,%d&sensor=true";
-
-		googleUrl =
-			util.format(googleUrl,
-				device.location.latitude, device.location.longitude);
-
-		var req = {
-			url: googleUrl,
-			json: true
-		};
-
-		request(req, function(err, response, json) {
-			if (!err && response.statusCode == 200) {
-				if (Array.isArray(json.results) &&
-					json.results.length > 0 &&
-					json.results[0].hasOwnProperty("formatted_address")) {
-
-					return callback(err, json.results[0].formatted_address);
-				}
-			}
-			return callback(err);
-		});
-
-	},
-	getDistanceOfDevice: function(device, myLatitude, myLongitude, callback) {
-		if (device.location) {
-
-			var googleUrl = "http://maps.googleapis.com/maps/api/distancematrix/json" +
-				"?origins=%d,%d&destinations=%d,%d&mode=driving&sensor=false";
-
-			googleUrl =
-				util.format(googleUrl, myLatitude, myLongitude,
-					device.location.latitude, device.location.longitude);
-
-			var req = {
-				url: googleUrl,
-				json: true
-			};
-
-			request(req, function(err, response, json) {
-				if (!err && response.statusCode == 200) {
-					if (json && json.rows && json.rows.length > 0) {
-						return callback(err, json.rows[0].elements[0]);
-					}
-					return callback(err);
-				}
-			});
-
-		} else {
-			callback("No location found for this device");
-		}
-	}
 };
 
 
