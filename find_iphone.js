@@ -143,7 +143,7 @@ var findmyphone = {
 		var options = {
 			url: findmyphone.base_path + "/fmipservice/client/web/playSound",
 			json: {
-				"subject": "Amazon Echo Find My iPhone Alert",
+				"subject": "Webtask Find My iPhone Alert",
 				"device": deviceId
 			}
 		};
@@ -267,9 +267,9 @@ module.exports = function (ctx, done) {
 		var device;
 
 		if (error) {
-			throw error; /*adam*/
+			throw error;
 		}
-		//pick a device with location and findMyPhone enabled 
+
 		devices.forEach(function(d) {
 			if (device == undefined && d.location && d.lostModeCapable) {
 				device = d;
