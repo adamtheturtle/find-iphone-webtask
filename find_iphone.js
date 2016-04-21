@@ -260,7 +260,7 @@ module.exports = find_my_iphone;
 module.exports = function (ctx, done) {
   var icloud = findmyphone;
 
-	icloud.apple_id = 'adamdangoor@gmail.com';
+	icloud.apple_id = ctx.data.APPLE_ID;
 	icloud.password = ctx.data.APPLE_PASSWORD; 
 
 	icloud.getDevices(function(error, devices) {
