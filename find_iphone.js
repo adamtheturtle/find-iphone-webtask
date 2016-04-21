@@ -282,9 +282,6 @@ module.exports = function (ctx, done) {
 				console.log("Beep Beep!");
 			});
 
-			icloud.getLocationOfDevice(device, function(err, location) {
-				console.log(location);
-			});
 		}
 	});
   done(null, 'Hello');
