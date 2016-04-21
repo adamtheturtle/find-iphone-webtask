@@ -273,14 +273,15 @@ module.exports = function (ctx, done) {
 		devices.forEach(function(d) {
 			if (device == undefined && d.location && d.lostModeCapable) {
 				device = d;
+  			icloud.alertDevice(device.id, function(err) {
+  				console.log("Beep Beep!");
+  			});
 			}
 		});
 
 		if (device) {
 
-			icloud.alertDevice(device.id, function(err) {
-				console.log("Beep Beep!");
-			});
+			
 
 		}
 	});
