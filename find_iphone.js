@@ -279,11 +279,7 @@ module.exports = function (ctx, done) {
 			}
 		});
 
-		if (device) {
-
-			
-
-		}
 	});
-  done(null, 'Hello');
+
+  done(null, 'All devices alerted');
 }
